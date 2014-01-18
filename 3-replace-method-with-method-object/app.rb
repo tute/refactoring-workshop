@@ -1,12 +1,12 @@
-#!/usr/bin/env ruby -w
 require 'csv'
 
-# 1. Crear una clase que se inicializa con los mismos argumentos que el método
-# 2. Copiar y pegar el método en la nueva clase, quitando sus argumentos
-# 3. Reemplazar el método original por una llamada a la clase nueva
-# 4. Extraer cada pedazo de código que se puede identificar como un subpaso,
-#    y darle un nombre apropiado. Intention Revealing Method For The Win.
+# 1. Create a class with same initialization arguments as BIGMETHOD
+# 2. Copy & Paste the method's body in the new class, with no arguments
+# 3. Replace original method with a call to the new class
+# 4. Apply "Intention Revealing Method" to the new class. Woot!
 class Formatter
+  # More code, methods, and stuff in this big class
+
   def row_per_day_format(file_name)
     file = File.open file_name, 'r:ISO-8859-1'
     # hash[NivelConsistencia][date] = [[value, status]]
@@ -20,7 +20,7 @@ class Formatter
       (13..43).each do |i|
         measurement_date = date + (i-13)
 
-        # Si NumDiasDeChuva es vacío significa sin datos
+        # If NumDiasDeChuva is empty it means no data
         value  = row[7].nil? ? -99.9 : row[i]
         status = row[i + 31]
         hash_value = [value, status]
@@ -49,6 +49,6 @@ class Formatter
 
     str
   end
-end
 
-require './tests' if __FILE__ == $0
+  # More code, methods, and stuff in this big class
+end

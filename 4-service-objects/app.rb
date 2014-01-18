@@ -1,4 +1,4 @@
-require './setup'
+require_relative 'setup'
 
 class User
   attr_accessor :subscription
@@ -33,6 +33,6 @@ class User
     # log API connection failure
     :network_error
   end
-end
 
-require './tests' if __FILE__ == $0
+  # Other private methods
+end

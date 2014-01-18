@@ -1,29 +1,33 @@
-# Refactoring Workshop
+# Taller de Refactorización
 
-Requerimientos: Ruby >1.9.3, git y la gema `minitest`.
+Requerimientos: Ruby >=1.9.3, git, bundler.
 
-Cada carpeta tiene el nombre del patrón de refactoring a practicar, y los
+Cada carpeta lleva por nombre el patrón de refactoring a practicar, y los
 siguientes archivos:
 
-* `setup.rb` código de inicialización necesario para `app.rb` (sería el
-  "framework", o el resto de la aplicación). No lo editaremos.
-* `tests.rb` el nombre lo explica. :) Necesarios para la vida, especialmente
-  para refactorizar.
 * `app.rb` código sobre el que trabajaremos.
-* `solucion-tute.rb` mi aplicación del patrón a `app.rb`.
+* `setup.rb` código de inicialización necesario para `app.rb` (sería el
+  "framework", o el resto de la aplicación). No necesitamos conocerlo o editarlo,
+  a no ser que sea por curiosidad.
+* `tests.rb` el nombre lo explica. Necesarios para la vida, especialmente si
+    pensamos refactorizar.
 
-Para ejecutar tests sólo tienen que ejecutar `app.rb`, por ejemplo:
+Ejecutar `bundle` para asegurarse de tener las rubygems necesarias para correr
+tests.
+
+Ejecutar tests via `rake`:
 
 ```bash
-$ ruby app.rb
-Run options: --seed 53634
+$ rake
+Run options: --seed 61694
 
 # Running:
-..
 
-Finished in 0.001191s, 1679.2611 runs/s, 3358.5223 assertions/s.
+..........
 
-2 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+Finished in 0.016857s, 593.2254 runs/s, 1423.7409 assertions/s.
+
+10 runs, 24 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 # Patrones de Refactorización
@@ -34,11 +38,7 @@ Finished in 0.001191s, 1679.2611 runs/s, 3358.5223 assertions/s.
 
 ## 3. Replace Method with Method Object
 
-Notas de implementación: contiene dos archivos adicionales necesarios para los
+Nota de implementación: contiene dos archivos adicionales necesarios para los
 tests: `fixtures/input.csv` y `fixtures/output.csv`, y no contiene `setup.rb`.
 
 ## 4. Service Object
-
-# Presentación - Slides
-
-Pueden abrir `presentacion/index.html` en el navegador web.

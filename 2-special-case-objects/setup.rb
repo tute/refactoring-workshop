@@ -17,14 +17,13 @@ end
 class User
   attr_accessor :name, :subscriptions
 
-  def initialize(name, subscriptions)
-    @name = name
-    @subscriptions = subscriptions
+  def initialize(options = {})
+    options.each { |k, v| send("#{k}=", v) }
   end
 
   def self.all
-    suscripto = User.new('Bob', [Subscription.new])
-    no_suscripto = User.new('Patricio', [])
+    suscripto = User.new(name: 'Bob', subscriptions: [Subscription.new])
+    no_suscripto = User.new(name: 'Patricio', subscriptions: [])
     [suscripto, no_suscripto]
   end
 end
