@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Simplificando código: de monstruo a elegante en tres simples pasos</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+<section>
+  <h1>Simplificando<br>Código</h1>
+  <br>
+  <h3>De monstruo a elegante<br>en simples pasos</h3>
+  <h3><small>(aka KIS)</small></h3>
+  <br>
+  <p>
+    <small>Tute Costa - <a href="http://twitter.com/tutec">@tutec</a></small>
+  </p>
+</section>
+
+<section>
+  <h2>Sobre ustedes</h2>
+  <ul>
+    <li class="fragment">¿Cuántos conocen Ruby?
+    <li class="fragment">¿Por cuánto tiempo jugaron/trabajaron con Ruby?
+    <li class="fragment">¿Están familiarizado con la idea de Patrones de Software?
+    ¿Y patrones de refactorización?
+    <li class="fragment">¿Tienen instalado Ruby y git?
+  </ul>
+  <aside class="notes">
+    <li>¿Cuántos conocen Ruby?
+    <li>¿Por cuánto tiempo jugaron/trabajaron con Ruby?
+    <li>¿Están familiarizado con la idea de Patrones de Software?
+    ¿Y patrones de refactorización?
+    <li>¿Tienen instalado Ruby y git?
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>Sobre Tute</h2>
+  <ul>
+    <li>En verdad me llamo Eugenio
+    <li class="fragment">
+      Pero tengo un tocayo de renombre<br>
+      <img width="800" src="imgs/eugenio-costa.png">
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h2>Sobre Tute</h2>
+  <ul>
+    <li>Creía que con "Tute" era único pero<br>
+      <img width="750" src="imgs/tute.unique.png">
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h2>Sobre Tute</h2>
+  <ul>
+    <li>tute.unique no es un caso de múltiples identidades<br>
+      <img width="800" src="imgs/self-identity.png">
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h2>Sobre Tute</h2>
+  <ul>
+    <li>En 2011/2012 trabajé en ChefSurfing.com.
+    <li class="fragment">
+      Programábamos un montón.<br>
+      En algún momento el SW nos mordía.
+    <li class="fragment">Parábamos el mundo para refactorizar y testear.
+    <li class="fragment">
+      No era sostenible.<br>
+      Ni previsible.
+    <li class="fragment">Eramos el conejo de la fábula, la tortuga nos pasaba.
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h2>Sobre Tute</h2>
+  <ul>
+    <li>
+      En 2013 trabajé en GeneralAssemb.ly.<br>
+      Una "startup" que creció.
+    <li class="fragment">
+      "Core". Una app Rails en <i>malas</i> condiciones<br>
+      <small>Aunque muchos tests. Refactorizar no era (tan) riesgoso</small>
+    <li class="fragment">
+      Me dijeron <q>&ldquo;refactor allthethings!&ldquo;</q><br>
+      <small>Y así fue.</small>
+      <small class="fragment">Mientras el equipo seguía "feature shipping".</small>
+    <li class="fragment">
+      Multiplicó la productividad tras las semanas<br>
+      <small>Menos código. Más sencillo. Más bello.</small><br>
+    <li class="fragment">
+      Días más tarde: hay un bug!<br>
+      Mmh, pero ese código ya no es necesario, borralo y desaparece el bug.
+    <li class="fragment">
+      Quiero replicar esa historia.
+  </ul>
+</section>
+
+<section>
+  <h2>Hoy vamos a ver los<br>patrones:</h2>
+  <ul>
+    <li>
+      <span style="color:blue">1. Intention Revealing Method</span>
+      <br>
+      <small>Método que revela la intención</small>
+    <li>
+      <span style="color:blue">2. Special Case Object</span>
+      <br>
+      <small>Objeto "Caso Especial"</small>
+    <li>
+      <span style="color:blue">3. Replace Method with Method Object</span>
+      <br>
+      <small>Y U NO</small>
+    <li>
+      <span style="color:blue">4. Service Object</span>
+      <br>
+      <small>Objeto "Servicio"</small>
+  </ul>
+
+  <br>
+  <p class="fragment">¿Alguno les suena familiar?</p>
+  <br>
+
+  <p class="fragment">
+    Precondición: hay tests.
+  </p>
+</section>
+
+
+<section data-transition="none">
+  <h2>1. Intention Revealing Method</h2>
+
+  <p>Un método largo es difícil de entender.</p>
+
+  <br>
+  <p>Código con varios <code>if</code> e indentaciones es engorroso de leer.</p>
+
+  <br>
+  <p>Si el programador fue amigable dejó algunos comentarios,
+  digamos que en cada rama de un <code>if</code>.</p>
+</section>
+
+<section data-transition="none">
+  <section data-transition="none">
+    <h2>1. Intention Revealing Method</h2>
+
+    <p>Idea: abstraer los conceptos a sus propios métodos, con nombres que
+    indiquen lo que hacen.</p>
+
+    <br>
+    <p>Mi algoritmo:</p>
+    <ol>
+      <li>Transformar comentarios en métodos
+      <li>Los comentarios son ahora código
+      <li>El código se explica a sí mismo. Boom!
+    </ol>
+  </section>
+
+  <section data-transition="none">
+    <h2>1. Intention Revealing Method - Ejemplo</h2>
+    <pre><code data-trim contenteditable>
+if personas_sentadas.empty?
+  # Si terminó la sobre mesa llevamos los platos a la cocina y los lavamos
+  platos.en_mesa.each do |plato|
+    plato.agarrar
+    plato.llevar(:cocina)
+  end
+  platos.en_cocina.each do |plato|
+    plato.limpiar
+    plato.guardar
+  end
+elsif personas_sentadas && personas_sentadas.all?(&:terminaron_de_comer?)
+  # Si terminó la cena pero sigue la sobremesa invitar a un whisky o té
+  announce 'quieren un whisky, café o té?'
+  if asked('no es mucho laburo, che?')
+    announce 'pero no, para nada!'
+  end
+end
+    </code></pre>
+  </section>
+
+  <section data-transition="none">
+    <h2>1. Intention Revealing Method - Ejemplo</h2>
+    <pre><code data-trim contenteditable>
+if personas_sentadas.empty?
+  lavar_los_platos
+elsif sobremesa_continua?
+  invitar_a_un_apertivo
+end
+
+def lavar_los_platos
+  platos.en_mesa.each do |plato|
+    # [...]
+  end
+end
+
+def invitar_a_un_apertivo
+  announce 'quieren un whisky, café o té?'
+  # [...]
+end
+
+def sobremesa_continúa?
+  personas_sentadas && personas_sentadas.all?(&:terminaron_de_comer?)
+end
+    </code></pre>
+  </section>
+</section>
+
+<section data-transition="none">
+  <h2>1. Intention Revealing Method</h2>
+  <br>
+  <code>$ git clone https://github.com/tute/refactoring-workshop.git</code>
+</section>
+
+<section data-transition="none">
+  <h2>1. Intention Revealing Method</h2>
+  <br>
+  <p>Regla: no más de 5 líneas por método.</p>
+  <p>No hay problema!</p>
+</section>
+
+<section data-transition="none">
+  <h2>1. Intention Revealing Method</h2>
+  <br>
+  <p>Es el más sencillo de los patrones.</p>
+  <div class="fragment">
+    <img src="imgs/naming.png">
+    <p>A la vez que el más difícil.</p>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h2>1. Intention Revealing Method</h2>
+  <h3>Recursos</h3>
+  <ul>
+    <li><a target="_blank" href="http://ntcoding.blogspot.com.ar/2011/05/clean-code-tricks-intention-revealing.html">http://ntcoding.blogspot.com.ar/2011/05/clean-code-tricks-intention-revealing.html</a>
+    <li><a target="_blank" href="http://www.codinghorror.com/blog/2008/07/coding-without-comments.html">http://www.codinghorror.com/blog/2008/07/coding-without-comments.html</a>
+    <li><a target="_blank" href="http://c2.com/cgi/wiki?ExtractMethod">http://c2.com/cgi/wiki?ExtractMethod</a>
+  </ul>
+</section>
+
+
+<section>
+  <h2>2. Special Case Objects</h2>
+  <h4>No más <code>if</code>s ni <code>try</code>s.</h4>
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+  <h3 style="color:#d66"><code>nil</code> es malo, malo, malo!</h3>
+  <p>Raíz de excepciones NN (<code>Undefined method `method_name' for nil:NilClass</code>).</p>
+
+  <br>
+<p>Un símbolo ya es mucho mejor que nil:</p>
+<pre><code data-trim contenteditable>
+user = User.find_by_id(params[:id]) || :no_logueado
+user.email # => undefined method `email' for :no_logueado:Symbol
+</code></pre>
+
+  <div class="fragment">
+    <p>Si puede haber <code>nil</code> tenemos que acordarnos de
+    rodearlo en un <code>if</code>:</p>
+    <pre><code data-trim contenteditable>
+if current_user
+  puts "Bienvenido, #{current_user.email}!"
+end
+    </code></pre>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+  <p>Idea: En lugar del éter, devolver un objeto que tenga la misma interfaz que el esperado.</p>
+
+<pre><code data-trim contenteditable>
+def current_user
+  User.find(session[:user_id]) || User::Null.new
+end
+</code></pre>
+
+<pre class="fragment"><code data-trim contenteditable>
+class User
+  # [...]
+  class Null
+    def email
+      'invitado'
+    end
+  end
+end
+</code></pre>
+
+<pre class="fragment"><code data-trim contenteditable>
+puts "Bienvenido, #{current_user.email}!" # success
+</code></pre>
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+  <h3>Recursos</h3>
+  <ul>
+    <li>RubyTapas #112 (requiere suscripción, la recomiendo!)
+    <li><a target="_blank" href="http://devblog.avdi.org/2011/05/30/null-objects-and-falsiness/">http://devblog.avdi.org/2011/05/30/null-objects-and-falsiness/</a>
+    <li><a target="_blank" href="http://martinfowler.com/eaaCatalog/specialCase.html">http://martinfowler.com/eaaCatalog/specialCase.html</a>
+    <li><a target="_blank" href="http://www.cs.oberlin.edu/~jwalker/nullObjPattern/">http://www.cs.oberlin.edu/~jwalker/nullObjPattern/</a>
+    <li><a target="_blank" href="http://nickknowlson.com/blog/2013/04/16/why-maybe-is-better-than-null/">http://nickknowlson.com/blog/2013/04/16/why-maybe-is-better-than-null/</a></li>
+  </ul>
+</section>
+
+
+<section>
+  <h2>3. Replace Method with Method Object</h2>
+  <br>
+  <h4 style="white-space:nowrap">Cómo desarmar un método gigante sin perderse en la noche fría.</h4>
+
+  <pre class="fragment"><code data-trim contenteditable>
+# Me cuesta leer 6 líneas, acá van 42:
+# (Y después se quejan de PHP)
+def row_per_day_format(file_name)
+  file = File.open file_name, 'r:ISO-8859-1'
+  # hash[NivelConsistencia][date] = [[value, status]]
+  hash = { '1' => {}, '2' => {} }
+  dates = []
+  str = ''
+  CSV.parse(file, col_sep: ';').each do |row|
+    next if row.empty?
+    next if row[0] =~ /^\/\//
+    date = Date.parse(row[2])
+    (13..43).each do |i|
+      measurement_date = date + (i-13)
+
+      # Si NumDiasDeChuva es vacío significa sin datos
+      value  = row[7].nil? ? -99.9 : row[i]
+      status = row[i + 31]
+      hash_value = [value, status]
+
+      dates << measurement_date
+      hash[row[1]][measurement_date] = hash_value
+    end
+  end
+
+  dates.uniq.each do |date|
+    if !hash['1'][date].nil? && hash['2'][date].nil?
+      # Only 'bruto' (good)
+      value = hash['1'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    elsif hash['1'][date].nil? && !hash['2'][date].nil?
+      # Only 'consistido' (kind of good)
+      value = hash['2'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    else
+      # 'bruto' y 'consistido' (has new and old data)
+      old_value = hash['1'][date]
+      new_value = hash['2'][date]
+      str << "#{date}\t#{new_value[0]}\t#{old_value[1]}\t#{old_value[0]}\n"
+    end
+  end
+
+  str
+end
+  </code></pre>
+</section>
+
+<section data-transition="none">
+  <section data-transition="none">
+    <h2>3. Replace Method with Method Object</h2>
+    <h4>Algoritmo para salir del embrollo:</h4>
+    <br>
+    <p>Son 4 pasos:</p>
+  </section>
+
+  <section data-transition="none">
+    <h2>3. Replace Method with Method Object</h2>
+    <h4>Algoritmo para salir del embrollo:</h4>
+
+    <p>1. Mirar el código y asustarse:</p>
+<pre><code data-trim contenteditable>
+# Me cuesta leer 6 líneas, acá van 42:
+# (Y después se quejan de PHP)
+def row_per_day_format(file_name)
+  file = File.open file_name, 'r:ISO-8859-1'
+  # hash[NivelConsistencia][date] = [[value, status]]
+  hash = { '1' => {}, '2' => {} }
+  dates = []
+  str = ''
+  CSV.parse(file, col_sep: ';').each do |row|
+    next if row.empty?
+    next if row[0] =~ /^\/\//
+    date = Date.parse(row[2])
+    (13..43).each do |i|
+      measurement_date = date + (i-13)
+
+      # Si NumDiasDeChuva es vacío significa sin datos
+      value  = row[7].nil? ? -99.9 : row[i]
+      status = row[i + 31]
+      hash_value = [value, status]
+
+      dates << measurement_date
+      hash[row[1]][measurement_date] = hash_value
+    end
+  end
+
+  dates.uniq.each do |date|
+    if !hash['1'][date].nil? && hash['2'][date].nil?
+      # Only 'bruto' (good)
+      value = hash['1'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    elsif hash['1'][date].nil? && !hash['2'][date].nil?
+      # Only 'consistido' (kind of good)
+      value = hash['2'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    else
+      # 'bruto' y 'consistido' (has new and old data)
+      old_value = hash['1'][date]
+      new_value = hash['2'][date]
+      str << "#{date}\t#{new_value[0]}\t#{old_value[1]}\t#{old_value[0]}\n"
+    end
+  end
+
+  str
+end
+</code></pre>
+  </section>
+
+  <section data-transition="none">
+    <h2>3. Replace Method with Method Object</h2>
+    <h4>Algoritmo para salir del embrollo:</h4>
+    <p>1. Crear una clase que se inicializa con los mismos argumentos que el método</p>
+<pre><code data-trim contenteditable>
+class FormatAtoB
+  def initialize(file_name)
+    @file_name = file_name
+  end
+end
+</code></pre>
+  </section>
+
+  <section data-transition="none">
+    <h2>3. Replace Method with Method Object</h2>
+    <h4>Algoritmo para salir del embrollo:</h4>
+    <p>2. Copiar y pegar el método en la nueva clase, quitando sus argumentos</p>
+<pre><code data-trim contenteditable>
+class FormatAtoB
+  def initialize(file_name)
+    @file_name = file_name
+  end
+
+  def row_per_day_format
+    file = File.open file_name, 'r:ISO-8859-1'
+    # hash[NivelConsistencia][date] = [[value, status]]
+    hash = { '1' => {}, '2' => {} }
+    dates = []
+    str = ''
+    CSV.parse(file, col_sep: ';').each do |row|
+      next if row.empty?
+      next if row[0] =~ /^\/\//
+      date = Date.parse(row[2])
+      (13..43).each do |i|
+        measurement_date = date + (i-13)
+
+        # Si NumDiasDeChuva es vacío significa sin datos
+        value  = row[7].nil? ? -99.9 : row[i]
+        status = row[i + 31]
+        hash_value = [value, status]
+
+        dates << measurement_date
+        hash[row[1]][measurement_date] = hash_value
+      end
+    end
+
+    dates.uniq.each do |date|
+      if !hash['1'][date].nil? && hash['2'][date].nil?
+        # Only 'bruto' (good)
+        value = hash['1'][date]
+        str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+      elsif hash['1'][date].nil? && !hash['2'][date].nil?
+        # Only 'consistido' (kind of good)
+        value = hash['2'][date]
+        str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+      else
+        # 'bruto' y 'consistido' (has new and old data)
+        old_value = hash['1'][date]
+        new_value = hash['2'][date]
+        str << "#{date}\t#{new_value[0]}\t#{old_value[1]}\t#{old_value[0]}\n"
+      end
+    end
+
+    str
+  end
+end
+</code></pre>
+  </section>
+
+  <section data-transition="none">
+    <h2>3. Replace Method with Method Object</h2>
+    <h4>Algoritmo para salir del embrollo:</h4>
+    <p>3. Reemplazar el método original por una llamada a la clase nueva:</p>
+<pre><code data-trim contenteditable>
+# Me cuesta leer 6 líneas, acá van 42:
+# (Y después se quejan de PHP)
+def row_per_day_format(file_name)
+  FormatAtoB.new(file_name).row_per_day_format
+end
+</code></pre>
+  </section>
+
+  <section data-transition="none">
+    <h2>3. Replace Method with Method Object</h2>
+    <h4>Algoritmo para salir del embrollo:</h4>
+    <p>4. Aplicar "Intention Revealing Method" a la flamante clase. Boom!</p>
+<pre><code data-trim contenteditable>
+class FormatAtoB
+  def initialize(file_name)
+    @file_name = file_name
+  end
+
+  def row_per_day_format
+    load_format_a_file
+    format_data_to_b
+  end
+
+  private
+
+  def load_format_a_file
+    # [...]
+  end
+end
+</code></pre>
+  </section>
+</section>
+
+<section data-transition="none">
+  <h2>3. Replace Method with Method Object</h2>
+  <h3>Recursos</h3>
+  <ul>
+    <li><a target="_blank" href="http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html">http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html</a>
+    <li><a target="_blank" href="http://confreaks.com/videos/1071-cascadiaruby2012-therapeutic-refactoring">http://confreaks.com/videos/1071-cascadiaruby2012-therapeutic-refactoring</a>
+  </ul>
+</section>
+
+
+<section>
+  <h2>4. Objetos "Servicio"</h2>
+  <h3>Cómo dividir responsabilidades<br>de clases grandes</h3>
+</section>
+
+<section data-transition="none">
+  <h2>4. Objetos "Servicio"</h2>
+  <h4>Problema</h4>
+  <h4>Si agregamos funcionalidad no relacionada a un objeto:</h4>
+
+  <ul>
+    <li>Se acopla a nuevas dependencias (testing)</li>
+    <li>Se pierde cohesión</li>
+    <li>Se pierde la única responsabilidad (claridad conceptual)</li>
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h2>4. Objetos "Servicio"</h2>
+  <h4>Solución</h4>
+  <h4>¡Sorpresa! Implica nuevos objetos</h4>
+
+  <p>Si es un concepto relevante se modela la operación en un nuevo objeto</p>
+  <p>
+    Se lo declara "servicio" para denotar que modela un Proceso (en lugar
+    de una Entidad o Valor,<br>en términos del
+    <a target="_blank" href="http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">DDD</a>)</p>
+</section>
+
+<section data-transition="none">
+  <h2>4. Objetos "Servicio"</h2>
+  <h3>Recursos</h3>
+  <ul>
+    <li><a target="_blank" href="http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/#service-objects">http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/#service-objects</a></li>
+    <li><a target="_blank" href="http://railscasts.com/episodes/398-service-objects">http://railscasts.com/episodes/398-service-objects</a> (por si tienen suscripción)</li>
+  </ul>
+</section>
+
+
+<section>
+  <h2>Próximos pasos</h2>
+
+  <p>Enviar código a proyectos libres en GitHub<br>es una mina de oro. Dos links:</p>
+
+  <p>
+    <a target="_blank" href="https://github.com/sferik/rails_admin">sferik/rails_admin</a><br>
+    <small><a target="_blank" href="https://codeclimate.com/github/sferik/rails_admin/code?sort=remediation_cost&sort_direction=desc">Code Climate</a></small>
+  </p>
+
+  <p>
+    <a target="_blank" href="https://github.com/TracksApp/tracks">TracksApp/tracks</a><br>
+    <small><a target="_blank" href="https://codeclimate.com/github/TracksApp/tracks/code?sort=remediation_cost&sort_direction=desc">Code Climate</a></small>
+  </p>
+
+  <br>
+  <p class="fragment">Sigan "<a target="_blank" href="http://robots.thoughtbot.com/sandi-metz-rules-for-developers">las 4 reglas</a>"
+    <br>
+    <small>(o al menos piensen cómo afectarían el código)</small></p>
+</section>
+
+<section>
+  <h2>Porqué refactorizar</h2>
+  <ul>
+    <li>Inversión al largo plazo de bajo costo
+    <li class="fragment">
+      Si aparece un bug va a ser más fácil de resolver<br>
+      <small>Y va a haber menos, ¡por aún mejores fines de semana!</small>
+    <li class="fragment">Trabajamos con las propias herramientas con que trabajamos. Somos creadores y usuarios, meta profesionales.
+    <li class="fragment">Si caigo en un límite, que sea "over-engineering". "Under-engineering" puede minar un proyecto.
+  </ul>
+</section>
+
+<section>
+  <h2>¡Eso es todo por ahora!</h2>
+
+  <img src="imgs/responsibility.png"><br>
+  <a target="_blank" href="https://twitter.com/tutec">@tutec</a>
+  -
+  <a target="_blank" href="https://github.com/tute">github.com/tute</a>
+</section>
+
+      </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
