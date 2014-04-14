@@ -7,9 +7,8 @@ Each folder is named after the refactoring pattern they tackle, and contains:
 * `app.rb` code we'll refactor.
 * `setup.rb` necessary code for `app.rb` to run (mimicks a SUPER BASIC Rails)
   We don't need to see/edit it unless just curious. :-)
-* `tests.rb` self explaining. Necessary for daily life, specially for
+* `tests.rb` self explanatory. Necessary for daily life, specially for
   refactoring.
-* `solucion-tute.rb` my solution (after applying the pattern to `app.rb`).
 
 You may run tests by running `tests.rb` or `app.rb` files, like:
 

@@ -10,7 +10,7 @@ siguientes archivos:
 * `tests.rb` el nombre lo explica. :) Necesarios para la vida, especialmente
   para refactorizar.
 * `app.rb` código sobre el que trabajaremos.
-* `solucion-tute.rb` mi aplicación del patrón a `app.rb`.
+* `.app-tute.rb` mi aplicación del patrón a `app.rb`.
 
 Para ejecutar tests sólo tienen que ejecutar `app.rb`, por ejemplo:
 

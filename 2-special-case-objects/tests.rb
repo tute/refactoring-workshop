@@ -7,7 +7,7 @@ class TestApp < Minitest::Test
       "Bob" => { name: "Monthly Subscription", status: "active", trial_days: 14},
       "Patricio" => { name: "none", status: "-", trial_days: "-"}
     }
-    assert_equal response, StatusReportJob.perform
+    assert_equal response, StatusReportJob.new.perform
   end
 
   def test_subscription_cancel
