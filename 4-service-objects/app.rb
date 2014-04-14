@@ -33,6 +33,8 @@ class User
     # log API connection failure
     :network_error
   end
+
+  # Other private methods
 end
 
 require './tests' if __FILE__ == $0

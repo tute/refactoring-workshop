@@ -1,0 +1,1025 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Simplifying Code: Monster to Elegant in N<5 steps</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+<section>
+  <h1>Simplifying<br>Code</h1>
+  <br>
+  <h3>Monster to Elegant<br>in N<5 steps</h3>
+  <br>
+  <p>
+    <small>Tute Costa - <a href="http://twitter.com/tutec">@tutec</a></small>
+  </p>
+
+  <aside class="notes">
+    OHAI GOOD MORNING WELCOME!
+    "Good morning, cause that's what it is!" story
+    Times Square, everyone rashing to work at 9am, and these beautiful two
+    persons greeting every single person.
+    <li>Have a nice friday!
+    <li>Have a nice workday!
+    <li>Have a nice weekend!
+    <li>Enjoy your morning!
+    <br>
+    <br>
+    And I thought ZOMG Why don't we all cheer up each other!
+    <br>
+    <br>
+    Hopefully I encounter them each day I go to a crazy place like that one.
+    <br>
+    <br>
+    And hopefully I could spread a a similar kind of morning-joy to you now,
+    first day at RailsConf!
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>We'll learn how to convert this</h2>
+
+<pre style="margin:1em auto"><code data-trim contenteditable>
+// fax
+if (!empty($this->post['fax'])) {
+  $site->fax = $this->post['fax'][0];
+}
+
+// Facebook & Twitter
+if ($this->post['social_media']) {
+  if (!empty($this->post['facebook'])) {
+    $facebookURL = $this->post['facebook'];
+    if (strpos($this->post['facebook'], 'http://') === false) {
+      $facebookURL = "http://" . $this->post['facebook'];
+    }
+    $site->facebook_url = $facebookURL;
+  }
+
+  if (!empty($this->post['twitter'])) {
+    $twitterURL = $this->post['twitter'];
+    if (strpos($this->post['twitter'], 'http://') === false) {
+      $twitterURL = "http://" . $this->post['twitter'];
+    }
+    $site->twitter_url = $twitterURL;
+  }
+
+  if (!empty($this->post['googlePlus'])) {
+</code></pre>
+
+  <div class="fragment" style="position: absolute; left: 60%; top: 35%">
+    <img src="imgs/troll-face.png"
+    style="border: 0; background: none; box-shadow: none">
+  </div>
+
+  <aside class="notes">
+    In this workshop we'll learn to convert this...
+    <br>
+    <br>
+    You can see some weird coding standards, with dollar signs before
+    variables and a weird OO syntax.
+    <br>
+    <br>
+    (troll face) Kidding! Just PHP!
+    <br>
+    <br>
+    Let's put here whatever code you have in mind of any project you have been
+    working on and not like/just don't know how to deal with, high churn rate.
+    <br>
+    <br>
+    MY GOAL for this workshop is that you learn tools you need to improve
+    your existing code bases.
+    <br>
+    <br>
+    MY GOAL is that you leave with a set of well defined
+    steps for you to improve your own tools, to work better from today on.
+    <br>
+    <br>
+    So, check it out, because from this PHP we'll go all the way through...
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2><span style="text-transform: none">Into</span> THIS</h2>
+
+<pre style="margin:1em auto"><code data-trim contenteditable>
+current_user
+  .public_profiles
+  .update(params)
+</code></pre>
+
+  <div class="fragment">
+    <img src="imgs/i-see-what-you-did-there.jpg" width="400">
+  </div>
+
+  <aside class="notes">
+    Into this oneliner!
+    <br>
+    <br>
+    ("I see what you did there" appears)
+    <br>
+    <br>
+    You can see that I cheated a little bit here but it is true that the
+    change can feel quite as impressive (go back and forth)
+    <br>
+    <br>
+    Present problem CodeClimate solves, the magic wand, and move on to it's
+    slide.
+  </aside>
+</section>
+
+
+<section data-transition="none">
+  <h2>CodeClimate knows</h2>
+
+  <img src="imgs/CC-refactor-1.png">
+
+  <aside class="notes">
+    CodeClimate helps spotting anomalies. Recently they actually built an
+    automated refactoring tool into it.
+    <br>
+    <br>
+    They have a new icon, a magic wand which you click, wait a few moments and
+    then see the welcomed commit.
+  </aside>
+</section>
+
+
+<section data-transition="none">
+  <h2>CodeClimate knows</h2>
+
+  <img src="imgs/CC-refactor-2.png">
+
+  <aside class="notes">
+    So this recent new feature saw the light on April the 1st, if you know
+    what I mean. ;-)
+  </aside>
+</section>
+
+
+<section>
+  <h1>About You</h1>
+  <!-- http://www.lolhome.com/funny-picture-9979527661.html -->
+  <img src="imgs/about-you-cat.jpg">
+
+  <aside class="notes">
+    I need to learn a little about you, to see how to spend this precious
+    time.
+    <br>
+    <br>
+    Do you have Ruby >1.9 and git installed in your computers? Please raise
+    your hand if you don't so we go help you.<br>
+    Are you familiar with OOD, Design Patterns? We'll revisit it's definition,
+    anyone wants to describe it?<br>
+    Are you familiar with Refactoring Patterns?<br>
+    <br>
+    <br>
+    <strong>Refactoring</strong> is the process of restructuring existing code
+    without changing its external behavior. Advantages are improved code
+    readability, reduced complexity, improve source code maintainability, and
+    create a more expressive architecture or object model.
+    <br>
+    <br>
+    A <strong>pattern</strong> is a general reusable solution to a
+    reccurring problem.  It is a description or template for how to solve a
+    problem that can be used in many different situations. Patterns are
+    formalized best practices
+    <br>
+    <br>
+    What we'll learn today is, for typical code pain points, specific steps to
+    improve code problems, without falling into too big of a changeset (aka
+    rewrite), providing then a scoped pathway that we can take and will result
+    in a code-base that's easier to work with in at most a couple of hours.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>About Tute</h2>
+  <img src="imgs/about-tute.jpg" width="750">
+  <aside class="notes">
+    I'll speak a little but about myself, what have I been doing, to land in
+    what I love doing, refactoring, and why do I feel the need to discuss it
+    in workshops like this one.
+    <br>
+    <br>
+    First things first: actually, my first name is Eugenio
+    <br>
+    <br>
+    But I have a renowned namesake.
+    <br>
+    So if you try to find me...
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>About Tute</h2>
+  <img width="800" src="imgs/eugenio-costa.png">
+  <aside class="notes">
+    I am not a ship, I promise you.
+    <br><br>
+    This is a Costa Cruise Ship. My grandparents travellend in it and they
+    were SOOO FREAKED OUT to see my name everywhere that they brought back any
+    merchandise they could find: big and small teddy bears, cushions, beer
+    openers with the shape of a Lifebuoy, bath mats, etc!
+    <br><br>
+    It's funny because when people come to my house and they don't know this
+    cruise ship line, and they go to the bathroom and see the bath mat with my
+    last name beautifully embroidered and with a great logo they think
+    "FAAAANCYY; where ám I!"
+    <br><br>
+    It's not useful for Open Source that people can't really find me, I should
+    choose a unique name. Tute seems uncommon enough, buuut...
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>About Tute</h2>
+
+  <img width="750" src="imgs/tute.unique.png">
+
+  <aside class="notes">
+    Will people freak out when they see myself, talking with myself in the
+    public mailing list?
+    <br>
+    <br>
+    But I can say that Tute and Tute is not a case of multiple personalities,
+    like the one of Konstantin
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>About Tute/TuteC</h2>
+
+  <img width="800" src="imgs/self-identity.png">
+
+  <div class="fragment" style="position: absolute; left: 50%; top: 32%">
+    <img src="imgs/just-came-for-the-comments.jpg" width="500"
+    style="border: 0; background: none; box-shadow: none">
+  </div>
+  <aside class="notes">
+    @konstantin for professional/personal stuff,<br>
+    (Meme w/popcorn appears)<br>
+    @rkh_popcorn for stuff you read when in a popcorn-y mood.<br>
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>About Tute/TuteC</h2>
+
+  <img width="800" src="imgs/konstantin-should-follow-rkh_popcorn-when-in-trouble.png">
+
+  <aside class="notes">
+    I believe they should interact more than they do, for example I don't know
+    if you knew that he lost a bag in a hell flight where he had to stay for
+    a night in an airport, and konstantinhasse wasn't hearing from
+    rkh_popcorn.
+    <br>
+    <br>
+    You should speak with him, he's the man to talk now, he'll make your night
+    easier!
+    <br>
+    <br>
+    But well. I think I digress and the other Tute is getting anxious,
+    so let's move on.
+  </aside>
+</section>
+
+<section>
+  <h2>2011/2012: ChefSurfing</h2>
+
+  <p>We wrote <span style="color:red">so much code</span>.
+  <p class="fragment">
+    Every 2 months <span style="color:red">complexity</span> would bite us.
+  <p class="fragment">
+    <span style="color:red">Stop-the-world</span>.
+    <span style="color:green">Test</span> &&
+    <span style="color:green">Refactor</span>.
+  <p class="fragment">
+    Not <span style="color:blue">predictable</span>.
+    Not <span style="color:blue">sustainable</span>.
+
+  <aside class="notes">
+    <li>
+      We "cranked out" so much code.
+      Every couple of months complexity would bite us.
+    <li>We had to stop the world to refactor and test.
+    <li>
+      Not sustainable. Not predictable.
+    <li>(Next: house of cards cat gif)
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>2011/2012: ChefSurfing</h2>
+
+  <img width="600"
+    src="imgs/funny-house-of-cards-knocked-over-cat-scumbag-animals-animated-gif-pics.gif">
+
+  <aside class="notes">
+    It felt very much like this.  It was discouriging.
+    <br>
+    <br>
+    You are building up this big castle and suddenly it doesn't accept any
+    other change and it will fall down, for whatever unexpected reason.
+  </aside>
+</section>
+
+<section>
+  <h2>2013: GeneralAssemb.ly</h2>
+  <ul>
+    <li>
+      Rails app in <span style="color:red">BAD shape</span>.
+      But <span style="color:green">well tested</span>.
+    <li class="fragment">
+      I was told <q>&ldquo;<span style="color:green">refactor allthethings!</span>&ldquo;</q><br>
+    <li class="fragment">
+      Improved <span style="color:green">productivity</span> week after week
+    <li class="fragment">
+      I want to <span style="color:green">repeat (and improve!)</span> this story.
+  </ul>
+
+  <div class="fragment" style="position: absolute; left: 58%; top: 30%">
+    <img src="imgs/responsibility.png"
+    style="border: 0; background: none; box-shadow: none">
+  </div>
+
+  <aside class="notes">
+    <li>2013 I worked at GA. "Core" Rails app. <i>bad</i> shape.
+      But it had tests, and refactoring wasn't (so) risky
+    <li>I was told "do it!", and refactored while the team continued shipping features.
+    <li>Smaller code base. Simpler. Prettier.
+    <li>
+      I want to REPEAT (and IMPROVE!) this story.<br>
+
+      I'm very PASSIONATE about refactoring, I think it's POWERFUL in
+      improving productivity and thus enjoying better daily work.<br>
+
+      Code speaks by itself, it's suddenly better than Pivotal Tracker itself
+      or any meeting.
+
+      <ul>
+        <li>PMs at GA could change constants, wording and even some
+          business-logic, because they knew exactly what they were doing, because
+          would speak english with them. I'm proud of that. :)
+        <li>Exceptions have more context and are easier to fix, it's not so
+          easy to introduce bugs, etc. Grass gets greener and sun shines
+          better!
+
+    <li>(Clean up all the things appears)
+  </aside>
+</section>
+
+<section>
+  <h2>Refactoring Patterns</h2>
+  <br>&nbsp;
+  <ul>
+    <p>
+      <span style="color:blue">1. Intention Revealing Method</span>
+    <p>
+      <span style="color:blue">2. Special Case Object</span>
+    <p>
+      <span style="color:blue">3. Replace Method with Method Object</span>
+    <p>
+      <span style="color:blue">4. Service Object</span>
+  </ul>
+
+  <aside class="notes">
+    <p>Are you familiar with any/all of them? Please raise your hand. Would
+      you like to introduce your definition, or general idea?
+    <li>1. Turns comments unnecessary, as code reads better
+    <li>2. Avoids type checks/conditionals. Just tell the object what to do.
+    <li>3. Refactor "gigantic" methods at ease, takes care of state.
+      Big methods come with big classess full of temporary variables.
+    <li>4. Extract responsibilities from BIG god objects.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>Precondition:<br>there's tests</h2>
+
+  <img src="imgs/w_tests.png" style="width:90%">
+
+  <div class="fragment" style="position: absolute; left: 10%; top: 50%">
+    <img src="imgs/no-idea-what-im-doing.jpg" width="600"
+    style="border: 0; background: none; box-shadow: none">
+  </div>
+
+  <aside class="notes">
+    This may seem obvious, hopefully it does. But tests are a must.
+    <br>
+    <br>
+    Problem of breaking something that previously worked. Avoid it.
+    <br>
+    <br>
+    If you don't have them, just don't refactor.<br>
+    Or continue feature shippin'! IF YOU CAN.
+    <br>
+    <br>
+    If you go down the red road you may end up with your hands burnt, like I
+    was in ChefSurfing.
+    <br>
+    (Dog meme appears: I have no idea what I'm doin')
+  </aside>
+</section>
+
+<section>
+  <h3>Intention Revealing Method</h3>
+
+  <p><span style="color:green">Why</span> it's called is more important than</p>
+  <p><span style="color:blue">how/what</span> it does.</p>
+
+<pre style="margin:1em auto"><code data-trim contenteditable>
+# Remove duplicates?
+if hash[row[1]][date] != row[0]
+  # ...
+</code></pre>
+<pre><code data-trim contenteditable>
+if remove_duplicates?(row, date)
+  # ...
+
+def remove_duplicates?(data, date)
+</code></pre>
+
+
+  <aside class="notes">
+    <li>Idea: Extract relevant concepts into methods with "proper" names.
+    <li>Comments not needed any longer. Edit in place?
+    <li>Different levels of abstractions: Keep all of the operations in a
+    method at the same level of abstraction.
+    <li>Comments are fragile: we edit code which is what runs and gets tested,
+    and may forget to update the comments. "Lies waiting to happen".<br>
+    Code now reads itself, which is the most beautiful thing we can achieve.
+    <li>Code grows with more characters, lines, but also
+    <strong>readability</strong>. Though arguably it's actually shorter to
+    read, cause we don't really need to see how do we compute if there's a
+    duplicate (implementation detail, low-level detail).
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Intention Revealing Method</h3>
+
+  <ol>
+    <li>Add <span style="color:blue">comments</span> if code needs it
+    <li>Transform comments into <span style="color:blue">methods</span>
+      <br>
+      <small>Transform them syntactically, then create the method.</small>
+    <li>Comments are now <span style="color:green">code</span>.<br>
+      Code <span style="color:green">describes</span> itself.
+  </ol>
+
+  <aside class="notes">
+    An Algorithm
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Intention Revealing Method</h3>
+  <br>
+  <h2 style="text-transform:none">
+    git clone http://github.com/tute/<br>refactoring-workshop
+  </h2>
+
+  <aside class="notes">
+    Explain how the repo works.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Intention Revealing Method</h3>
+  <br>
+  <p style="color: green">&lt;5 lines per method</p>
+  <img src="imgs/sandi.jpeg"><br>
+  <p>No problem!</p>
+
+  <aside class="notes">
+    <li>Now it's easy, just extract out logic until you attain it or it doesn't improve.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h3>Intention Revealing Method</h3>
+  <br>
+  <p>It's arguably the <span style="color:green">easiest</span> pattern.</p>
+  <div class="fragment">
+    <img src="imgs/naming.png">
+    <p>But the <span style="color:red">hardest</span> as well.</p>
+  </div>
+</section>
+
+<section data-transition="none">
+  <h3>Intention Revealing Method</h3>
+  <h3>Resources</h3>
+  <ul>
+    <li><a target="_blank" href="http://ntcoding.blogspot.com.ar/2011/05/clean-code-tricks-intention-revealing.html">http://ntcoding.blogspot.com.ar/2011/05/clean-code-tricks-intention-revealing.html</a>
+    <li><a target="_blank" href="http://www.codinghorror.com/blog/2008/07/coding-without-comments.html">http://www.codinghorror.com/blog/2008/07/coding-without-comments.html</a>
+    <li><a target="_blank" href="http://c2.com/cgi/wiki?ExtractMethod">http://c2.com/cgi/wiki?ExtractMethod</a>
+  </ul>
+</section>
+
+
+<section>
+  <h2>2. Special Case Objects</h2>
+  <h3 style="text-transform:none">No more <code style="color:red">if</code>s or <code style="color:red">try</code>s.</h3>
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+  <h3 style="color:#d66; text-transform:none"><code>nil</code> is a troublemaker.</h3>
+
+  <br>
+  <p>Source of hard to trace exceptions:</p>
+  <code style="color: blue; font-size: 140%">Undefined method `email' for nil:NilClass</code>
+
+  <br>
+  <br>
+  <p>May come from:</p>
+
+<pre><code data-trim contenteditable>
+session[:current_user]  # => nil
+if (false) then 1 end   # => nil
+empty_method()          # => nil
+</code></pre>
+
+  <aside class="notes">
+    Where did this nil come from in my whole code base?
+    (scratches head)
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+
+  <p>A <span style="color:green">symbol</span> is better than <code style="color:red">nil</code>:</p>
+
+<pre><code data-trim contenteditable>
+def current_user
+  User.find_by_id(params[:id]) ||
+  :guest_user
+end
+current_user.email
+</code></pre>
+
+  <br>
+  <code style="color: blue; font-size: 140%">undefined method `email' for :guest_user:Symbol</code>
+
+  <aside class="notes">
+    Now we can find in project that symbol/trace the Nil.
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+
+  <p>If there may be <code style="color:red">nil</code> we need to enclose it with an <code style="color:blue">if</code>:</p>
+  <pre><code data-trim contenteditable>
+if current_user
+  puts "Ohai, #{current_user.email}!"
+else
+  puts 'Ohai, guest!'
+end
+  </code></pre>
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+
+  <p>Instead of <code style="color:red">nil</code>, return a new
+    <span style="color:green">object</span></p>
+
+<pre><code data-trim contenteditable>
+class User
+  class Null
+    def email; 'guest'; end
+  end
+end
+</code></pre>
+<pre><code data-trim contenteditable>
+def current_user
+  User.find(session[:user_id]) ||
+  User::Null.new
+end
+</code></pre>
+<pre><code data-trim contenteditable>
+puts "Ohai, #{current_user.email}!"
+</code></pre>
+
+</section>
+
+<section data-transition="none">
+  <h2>2. Special Case Objects</h2>
+  <h3>Resources</h3>
+  <ul>
+    <li>RubyTapas #112
+    <li><a target="_blank" href="http://devblog.avdi.org/2011/05/30/null-objects-and-falsiness/">http://devblog.avdi.org/2011/05/30/null-objects-and-falsiness/</a>
+    <li><a target="_blank" href="http://martinfowler.com/eaaCatalog/specialCase.html">http://martinfowler.com/eaaCatalog/specialCase.html</a>
+    <li><a target="_blank" href="http://www.cs.oberlin.edu/~jwalker/nullObjPattern/">http://www.cs.oberlin.edu/~jwalker/nullObjPattern/</a>
+    <li><a target="_blank" href="http://nickknowlson.com/blog/2013/04/16/why-maybe-is-better-than-null/">http://nickknowlson.com/blog/2013/04/16/why-maybe-is-better-than-null/</a></li>
+  </ul>
+</section>
+
+
+<section>
+  <h2 style="font-size: 1.3em">3. Replace Method with Method Object</h2>
+
+  <p>How to refactor a <span style="color:red">GIGANTIC</span> method<br>
+    without getting lost in the cold night.</p>
+
+  <pre><code data-trim contenteditable style="font-size:120%">
+def row_per_day_format(file_name)
+  file = File.open file_name, 'r:ISO-8859-1'
+  # hash[NivelConsistencia][date] = [[value, status]]
+  hash = { '1' => {}, '2' => {} }
+  dates = []
+  str = ''
+
+  CSV.parse(file, col_sep: ';').each do |row|
+    next if row.empty?
+    next if row[0] =~ /^\/\//
+    date = Date.parse(row[2])
+    (13..43).each do |i|
+      measurement_date = date + (i-13)
+
+      # If NumDiasDeChuva is empty it means no data
+      value  = row[7].nil? ? -99.9 : row[i]
+      status = row[i + 31]
+      hash_value = [value, status]
+
+      dates << measurement_date
+      hash[row[1]][measurement_date] = hash_value
+    end
+  end
+
+  dates.uniq.each do |date|
+    if !hash['1'][date].nil? && hash['2'][date].nil?
+      # Only 'bruto' (good)
+      value = hash['1'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    elsif hash['1'][date].nil? && !hash['2'][date].nil?
+      # Only 'consistido' (kind of good)
+      value = hash['2'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    else
+      # 'bruto' y 'consistido' (has new and old data)
+      old_value = hash['1'][date]
+      new_value = hash['2'][date]
+      str << "#{date}\t#{new_value[0]}\t#{old_value[1]}\t#{old_value[0]}\n"
+    end
+  end
+
+  str
+end
+  </code></pre>
+</section>
+
+<section data-transition="none">
+  <h2 style="font-size: 1.3em">3. Replace Method with Method Object</h2>
+
+  <p>1/5. Look carefully at the code. Get <span style="color:red">scared</span>.</p>
+<pre><code data-trim contenteditable style="font-size:120%">
+def row_per_day_format(file_name)
+  file = File.open file_name, 'r:ISO-8859-1'
+  # hash[NivelConsistencia][date] = [[value, status]]
+  hash = { '1' => {}, '2' => {} }
+  dates = []
+  str = ''
+
+  CSV.parse(file, col_sep: ';').each do |row|
+    next if row.empty?
+    next if row[0] =~ /^\/\//
+    date = Date.parse(row[2])
+    (13..43).each do |i|
+      measurement_date = date + (i-13)
+
+      # If NumDiasDeChuva is empty it means no data
+      value  = row[7].nil? ? -99.9 : row[i]
+      status = row[i + 31]
+      hash_value = [value, status]
+
+      dates << measurement_date
+      hash[row[1]][measurement_date] = hash_value
+    end
+  end
+
+  dates.uniq.each do |date|
+    if !hash['1'][date].nil? && hash['2'][date].nil?
+      # Only 'bruto' (good)
+      value = hash['1'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    elsif hash['1'][date].nil? && !hash['2'][date].nil?
+      # Only 'consistido' (kind of good)
+      value = hash['2'][date]
+      str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+    else
+      # 'bruto' y 'consistido' (has new and old data)
+      old_value = hash['1'][date]
+      new_value = hash['2'][date]
+      str << "#{date}\t#{new_value[0]}\t#{old_value[1]}\t#{old_value[0]}\n"
+    end
+  end
+
+  str
+end
+</code></pre>
+
+  <div class="fragment">
+    <img src="imgs/just-kidding.jpg" width="500" style="position: absolute; top: 82px; left: 8%">
+  </div>
+</section>
+
+<section data-transition="none">
+  <h2 style="font-size: 1.3em">3. Replace Method with Method Object</h2>
+  <p>1/4. Create a <span style="color:green">class</span> with same initialization arguments as BIG method</p>
+<pre><code data-trim contenteditable>
+class FormatAtoB
+  def initialize(file_name)
+    @file_name = file_name
+  end
+end
+</code></pre>
+</section>
+
+<section data-transition="none">
+  <h2 style="font-size: 1.3em">3. Replace Method with Method Object</h2>
+  <p>2/4. Copy & Paste the method's <span style="color:blue">body</span> in the new class, with no arguments</p>
+<pre><code data-trim contenteditable>
+class FormatAtoB
+  def initialize(file_name)
+    @file_name = file_name
+  end
+
+  def row_per_day_format
+    file = File.open file_name, 'r:ISO-8859-1'
+    # hash[NivelConsistencia][date] = [[value, status]]
+    hash = { '1' => {}, '2' => {} }
+    dates = []
+    str = ''
+
+    CSV.parse(file, col_sep: ';').each do |row|
+      next if row.empty?
+      next if row[0] =~ /^\/\//
+      date = Date.parse(row[2])
+      (13..43).each do |i|
+        measurement_date = date + (i-13)
+
+        # If NumDiasDeChuva is empty it means no data
+        value  = row[7].nil? ? -99.9 : row[i]
+        status = row[i + 31]
+        hash_value = [value, status]
+
+        dates << measurement_date
+        hash[row[1]][measurement_date] = hash_value
+      end
+    end
+
+    dates.uniq.each do |date|
+      if !hash['1'][date].nil? && hash['2'][date].nil?
+        # Only 'bruto' (good)
+        value = hash['1'][date]
+        str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+      elsif hash['1'][date].nil? && !hash['2'][date].nil?
+        # Only 'consistido' (kind of good)
+        value = hash['2'][date]
+        str << "#{date}\t#{value[0]}\t#{value[1]}\n"
+      else
+        # 'bruto' y 'consistido' (has new and old data)
+        old_value = hash['1'][date]
+        new_value = hash['2'][date]
+        str << "#{date}\t#{new_value[0]}\t#{old_value[1]}\t#{old_value[0]}\n"
+      end
+    end
+
+    str
+  end
+end
+</code></pre>
+</section>
+
+<section data-transition="none">
+  <h2 style="font-size: 1.3em">3. Replace Method with Method Object</h2>
+  <p>3/4. <span style="color:blue">Replace</span> original method with a call to the new class</p>
+<pre><code data-trim contenteditable>
+def row_per_day_format(file_name)
+  FormatAtoB.new(file_name).row_per_day_format
+end
+</code></pre>
+</section>
+
+<section data-transition="none">
+  <h2 style="font-size: 1.3em">3. Replace Method with Method Object</h2>
+  <p>4/4. Apply "<span style="color:green">Intention Revealing Method</span>" to the class. Voilà.</p>
+<pre><code data-trim contenteditable>
+class FormatAtoB
+  def initialize(file_name)
+    @file_name = file_name
+  end
+
+  def row_per_day_format
+    load_file_a
+    format_data
+  end
+
+  private
+
+  def load_file_a
+    # [...]
+  end
+end
+</code></pre>
+</section>
+
+<section data-transition="none">
+  <h2 style="font-size: 1.3em">3. Replace Method with Method Object</h2>
+  <h3>Resources</h3>
+  <ul>
+    <li><a target="_blank" href="http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html">http://www.refactoring.com/catalog/replaceMethodWithMethodObject.html</a>
+    <li><a target="_blank" href="http://confreaks.com/videos/1071-cascadiaruby2012-therapeutic-refactoring">http://confreaks.com/videos/1071-cascadiaruby2012-therapeutic-refactoring</a>
+  </ul>
+</section>
+
+
+<section>
+  <h2>4. Service Objects</h2>
+  <p>
+    Decoupling <span style="color:green">different concerns</span><br>
+    from chubby classes
+  </p>
+</section>
+
+<section data-transition="none">
+  <h2>4. Service Objects</h2>
+  <h4>If we add new functionality to an object:</h4>
+
+  <ul>
+    <li>It <span style="color:red">couples</span> to a new dependency
+    <li>It <span style="color:red">loses cohesion</span>
+    <li>Testing gets <span style="color:red">harder</span> and
+      <span style="color:red">slower</span>
+    <li>We can't describe the model without connectors "and"/"or".
+      <span style="color:red">SRP</span>.
+  </ul>
+</section>
+
+<section data-transition="none">
+  <h2>4. Service Objects</h2>
+
+  <ul>
+    <p>
+      If it's a domain concept, it's <span style="color:green">an Object</span>.
+
+    <p>
+      If it's only an algorithm (no state) we call it a
+      <span style="color:green">Service</span>.
+  </ul>
+
+  <aside class="notes">
+    Service denotes a process as opposed to an Entity or Value
+    (in terms of
+    <a target="_blank" href="http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">Domain Driven Design</a>).
+  </aside>
+</section>
+
+<section data-transition="none">
+  <h2>4. Service Objects</h2>
+  <h3>Resources</h3>
+  <ul>
+    <li><a target="_blank" href="http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/#service-objects">http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/#service-objects</a></li>
+    <li><a target="_blank" href="http://railscasts.com/episodes/398-service-objects">http://railscasts.com/episodes/398-service-objects</a></li>
+  </ul>
+</section>
+
+
+<section>
+  <h2>Next Steps</h2>
+
+  <p>Send <span style="color:green">Pull Requests</span> to GitHub.
+
+  <p>It's a gold mine:
+
+  <br>
+  <br>
+  <p>
+    <a target="_blank" href="https://github.com/sferik/rails_admin">sferik/rails_admin</a><br>
+    <small><a target="_blank" href="https://codeclimate.com/github/sferik/rails_admin/code?sort=remediation_cost&sort_direction=desc">Code Climate</a></small>
+
+  <p>
+    <a target="_blank" href="https://github.com/TracksApp/tracks">TracksApp/tracks</a><br>
+    <small><a target="_blank" href="https://codeclimate.com/github/TracksApp/tracks/code?sort=remediation_cost&sort_direction=desc">Code Climate</a></small>
+</section>
+
+<section data-transition="none">
+  <h2>Next Steps</h2>
+
+  <p>Follow "<a target="_blank" href="http://robots.thoughtbot.com/sandi-metz-rules-for-developers">the 4 rules</a>"
+    <br>
+    <small>(or think how would they transform your code)</small></p>
+
+  <aside class="notes">
+    <ol>
+      <li>Classes can be no longer than one hundred lines of code.
+      <li>Methods can be no longer than five lines of code.
+      <li>Pass no more than four parameters into a method. Hash options are parameters.
+      <li>
+        Controllers can instantiate only one object. Therefore, views can only
+        know about one instance variable and views should only send messages
+        to that object (@object.collaborator.value is not allowed).
+    </ol>
+  </aside>
+</section>
+
+<section>
+  <h2>Why Refactoring</h2>
+  <ul>
+    <li><span style="color:green">Long term</span> investment at a low-ish cost
+    <li class="fragment">If you see a bug it'll be <span style="color:green">easier</span> to fix.
+    <li class="fragment">
+      We work with the tools with which we work. We are
+      <span style="color:green">users</span> and <span style="color:red">creators</span>.
+    <li class="fragment">
+      If I lean too much to a side, I prefer it to be
+      "<span style="color:green">over-engineering</span>".
+      "Under-engineering" is too <span style="color:red">risky, expensive</span>,
+      and over-crowded.
+  </ul>
+
+  <aside class="notes">
+    And there's going to be less, ¡for even better weekends!
+  </aside>
+</section>
+
+<section>
+  <h2>El Fin</h2>
+
+  <img src="imgs/responsibility.png"><br>
+  <a target="_blank" href="https://twitter.com/tutec">@tutec</a>
+  -
+  <a target="_blank" href="https://github.com/tute">github.com/tute</a>
+</section>
+
+      </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+  </body>
+</html>
