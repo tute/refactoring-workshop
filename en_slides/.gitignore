@@ -2,6 +2,3 @@
 .svn
 log/*.log
 tmp/**
-node_modules/
-.sass-cache
-reveal.min.*
