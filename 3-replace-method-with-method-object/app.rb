@@ -54,4 +54,4 @@ class Formatter
   # More code, methods, and stuff in this big class
 end
 
-require './tests' if __FILE__ == $0
+require File.expand_path('../tests.rb', __FILE__) if __FILE__ == $0

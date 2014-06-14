@@ -1,4 +1,4 @@
-require './setup'
+require File.expand_path('../setup.rb', __FILE__)
 
 class ProjectsController
   def index
@@ -17,4 +17,4 @@ class ProjectsController
   end
 end
 
-require './tests' if __FILE__ == $0
+require File.expand_path('../tests.rb', __FILE__) if __FILE__ == $0
