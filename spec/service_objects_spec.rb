@@ -1,4 +1,3 @@
-require  'spec_helper'
 require File.expand_path('../../4-service-objects/app.rb', __FILE__)
 
 describe User do
@@ -42,7 +41,7 @@ describe User do
     end
 
     context "when network error" do
-      before do 
+      before do
         PaymentGateway.stub(:unsubscribe) { raise SystemCallError.new 'Network Error' }
         user.subscribe
       end

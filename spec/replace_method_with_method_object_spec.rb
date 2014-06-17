@@ -1,4 +1,3 @@
-require  'spec_helper'
 require File.expand_path('../../3-replace-method-with-method-object/app.rb', __FILE__)
 
 describe Formatter do

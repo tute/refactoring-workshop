@@ -1,4 +1,3 @@
-require  'spec_helper'
 require File.expand_path('../../1-intention-revealing-method/app.rb', __FILE__)
 
 describe ProjectsController do

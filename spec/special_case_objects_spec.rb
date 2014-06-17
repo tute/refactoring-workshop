@@ -1,4 +1,3 @@
-require  'spec_helper'
 require File.expand_path('../../2-special-case-objects/app.rb', __FILE__)
 
 
