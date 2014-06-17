@@ -1,6 +1,16 @@
 # Refactoring Workshop
 
-Requerimientos: Ruby >1.9.3, git y la gema `minitest`.
+Requerimientos: Ruby >1.9.3, git y la gema `bundler`.
+
+Luego ejecuta:
+
+```bash
+$ bundle install
+```
+
+para instalar las gemas necesarias para hacer testing.
+
+Estas son `rake`,`rspec` y `minitest`.
 
 Cada carpeta tiene el nombre del patrón de refactoring a practicar, y los
 siguientes archivos:
@@ -11,6 +21,8 @@ siguientes archivos:
   para refactorizar.
 * `app.rb` código sobre el que trabajaremos.
 * `.app-tute.rb` mi aplicación del patrón a `app.rb`.
+
+La carpeta specs de igual manera, contiene los archivos de test de cada patrón.
 
 Para ejecutar tests sólo tienen que ejecutar `app.rb`, por ejemplo:
 
@@ -24,6 +36,17 @@ Run options: --seed 53634
 Finished in 0.001191s, 1679.2611 runs/s, 3358.5223 assertions/s.
 
 2 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+```
+
+o ejecutando el comando:
+```bash
+$ rake
+```
+
+Esto correrá todos los test usando rspec. Si deseas correrlos individualmente, es solo cuestión de ejecutar:
+
+```bash
+$ rspec spec/**_spec.rb
 ```
 
 # Patrones de Refactorización
