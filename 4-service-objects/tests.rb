@@ -1,5 +1,5 @@
-#!/usr/bin/env ruby -w
 require 'minitest/autorun'
+require_relative 'app'
 
 class TestApp < Minitest::Test
   def setup

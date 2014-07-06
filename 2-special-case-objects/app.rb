@@ -1,4 +1,4 @@
-require './setup'
+require_relative 'setup'
 
 class User
   def last_subscription
@@ -51,5 +51,3 @@ class StatusReportJob
     end
   end
 end
-
-require './tests' if __FILE__ == $0
