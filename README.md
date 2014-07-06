@@ -10,18 +10,22 @@ Each folder is named after the refactoring pattern they tackle, and contains:
 * `tests.rb` self explanatory. Necessary for daily life, specially for
   refactoring.
 
-You may run tests by running `tests.rb` or `app.rb` files, like:
+Run `bundle` to make sure you have the gems needed for running tests (`rake`
+and `minitest`).
+
+Run tests running `rake`:
 
 ```bash
-$ ruby app.rb
-Run options: --seed 53634
+$ rake
+Run options: --seed 61694
 
 # Running:
-..
 
-Finished in 0.001191s, 1679.2611 runs/s, 3358.5223 assertions/s.
+..........
 
-2 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+Finished in 0.016857s, 593.2254 runs/s, 1423.7409 assertions/s.
+
+10 runs, 24 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 # Refactoring Patterns

@@ -5,25 +5,28 @@ Requerimientos: Ruby >1.9.3, git y la gema `minitest`.
 Cada carpeta tiene el nombre del patrón de refactoring a practicar, y los
 siguientes archivos:
 
+* `app.rb` código sobre el que trabajaremos.
 * `setup.rb` código de inicialización necesario para `app.rb` (sería el
   "framework", o el resto de la aplicación). No lo editaremos.
 * `tests.rb` el nombre lo explica. :) Necesarios para la vida, especialmente
   para refactorizar.
-* `app.rb` código sobre el que trabajaremos.
-* `.app-tute.rb` mi aplicación del patrón a `app.rb`.
 
-Para ejecutar tests sólo tienen que ejecutar `app.rb`, por ejemplo:
+Ejecutar `bundle` para asegurarse de tener las rubygems necesarias para correr
+tests (`rake` y `minitest`).
+
+Ejecutar tests via `rake`:
 
 ```bash
-$ ruby app.rb
-Run options: --seed 53634
+$ rake
+Run options: --seed 61694
 
 # Running:
-..
 
-Finished in 0.001191s, 1679.2611 runs/s, 3358.5223 assertions/s.
+..........
 
-2 runs, 4 assertions, 0 failures, 0 errors, 0 skips
+Finished in 0.016857s, 593.2254 runs/s, 1423.7409 assertions/s.
+
+10 runs, 24 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 # Patrones de Refactorización

@@ -1,4 +1,3 @@
-#!/usr/bin/env ruby -w
 require 'csv'
 
 # 1. Create a class with same initialization arguments as BIGMETHOD
@@ -53,5 +52,3 @@ class Formatter
 
   # More code, methods, and stuff in this big class
 end
-
-require './tests' if __FILE__ == $0

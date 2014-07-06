@@ -1,4 +1,4 @@
-require './setup'
+require_relative 'setup'
 
 class ProjectsController
   def index
@@ -16,5 +16,3 @@ class ProjectsController
     end
   end
 end
-
-require './tests' if __FILE__ == $0
