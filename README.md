@@ -1,21 +1,19 @@
-# Taller de Refactorización
+# Refactoring Workshop
 
-Requerimientos: Ruby >=1.9.3, git, bundler.
+Requirements: Ruby >= 2.0, git, `minitest` gem.
 
-Cada carpeta lleva por nombre el patrón de refactoring a practicar, y los
-siguientes archivos:
+Each folder is named after the refactoring pattern they tackle, and contains:
 
-* `app.rb` código sobre el que trabajaremos.
-* `setup.rb` código de inicialización necesario para `app.rb` (sería el
-  "framework", o el resto de la aplicación). No necesitamos conocerlo o editarlo,
-  a no ser que sea por curiosidad.
-* `tests.rb` el nombre lo explica. Necesarios para la vida, especialmente si
-    pensamos refactorizar.
+* `app.rb` code we'll refactor.
+* `setup.rb` necessary code for `app.rb` to run (mimicks a SUPER BASIC Rails)
+  We don't need to see/edit it unless just curious. :-)
+* `tests.rb` self explanatory. Necessary for daily life, specially for
+  refactoring.
 
-Ejecutar `bundle` para asegurarse de tener las rubygems necesarias para correr
-tests.
+Run `bundle` to make sure you have the gems needed for running tests (`rake`
+and `minitest`).
 
-Ejecutar tests via `rake`:
+Run tests running `rake`:
 
 ```bash
 $ rake
@@ -30,7 +28,7 @@ Finished in 0.016857s, 593.2254 runs/s, 1423.7409 assertions/s.
 10 runs, 24 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-# Patrones de Refactorización
+# Refactoring Patterns
 
 ## 1. Intention Revealing Method
 
@@ -38,7 +36,17 @@ Finished in 0.016857s, 593.2254 runs/s, 1423.7409 assertions/s.
 
 ## 3. Replace Method with Method Object
 
-Nota de implementación: contiene dos archivos adicionales necesarios para los
-tests: `fixtures/input.csv` y `fixtures/output.csv`, y no contiene `setup.rb`.
+Implementation note: folder contains two fixture files needed for tests,
+`fixtures/input.csv` and `fixtures/output.csv`, and doesn't include `setup.rb`.
 
 ## 4. Service Object
+
+
+# Slides
+
+* [RubyConf Argentina Slides](http://es.slideshare.net/thoughtbot/refactoring-workshop-rubyconf-argentina-2014)
+* [RailsConf Slides](http://www.slideshare.net/tutec/simplifying-code-monster-to-elegant-in-n-5-steps)
+
+# In Spanish
+
+[Spanish version of this doc available](https://github.com/tute/refactoring-workshop/blob/master/README.md).
