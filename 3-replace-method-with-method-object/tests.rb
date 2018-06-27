@@ -8,6 +8,6 @@ class FormatterTest < Minitest::Test
   end
 
   def path(file_name)
-    in_path = File.expand_path File.join(File.dirname(__FILE__), file_name)
+    File.expand_path File.join(File.dirname(__FILE__), file_name)
   end
 end

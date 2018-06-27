@@ -29,7 +29,7 @@ class User
   # Try API connection, trap and log it on failures
   def try_api
     yield
-  rescue SystemCallError => e
+  rescue SystemCallError
     # log API connection failure
     :network_error
   end

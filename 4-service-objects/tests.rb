@@ -11,14 +11,14 @@ class TestApp < Minitest::Test
     assert_equal :monthly_plan, @user.subscription
 
     assert_equal @user.unsubscribe, :success
-    assert_equal nil, @user.subscription
+    assert_nil @user.subscription
   end
 
   def test_unsuccessful_subscription
     PaymentGateway.stub :subscribe, :error do
       assert_equal @user.subscribe, :error
     end
-    assert_equal nil, @user.subscription
+    assert_nil @user.subscription
   end
 
   def test_unsuccessful_unsubscription
@@ -35,7 +35,7 @@ class TestApp < Minitest::Test
     PaymentGateway.stub :subscribe, ->{ raise SystemCallError.new 'Network Error' } do
       assert_equal @user.subscribe, :network_error
     end
-    assert_equal nil, @user.subscription
+    assert_nil @user.subscription
   end
 
   def test_network_error_on_unsubscription
