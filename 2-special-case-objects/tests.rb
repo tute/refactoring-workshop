@@ -1,4 +1,5 @@
-require 'minitest/autorun'
+require_relative "../test_helper.rb"
+
 require_relative 'app'
 
 class TestApp < Minitest::Test

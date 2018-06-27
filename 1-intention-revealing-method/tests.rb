@@ -1,10 +1,11 @@
-require 'minitest/autorun'
+require_relative "../test_helper.rb"
+
 require_relative 'app'
 
 class TestProjectsController < Minitest::Test
   def setup
     @controller = ProjectsController.new
-    @admitted_user = User.new(created_at: Time.new(2013, 11, 10))
+    @admitted_user = User.new(created_at: Time.new(2000, 1, 1))
     @new_user = User.new(created_at: Time.new)
   end
 
