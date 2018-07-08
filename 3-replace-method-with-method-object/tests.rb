@@ -2,9 +2,9 @@ require_relative "../test_helper.rb"
 
 require_relative 'app'
 
-class FormatterTest < Minitest::Test
+class ExportJobTest < Minitest::Test
   def test_transformation
-    output = Formatter.new.row_per_day_format path('fixtures/input.csv')
+    output = ExportJob.new.row_per_day_format path('fixtures/input.csv')
     assert_equal output, File.read(path('fixtures/output.csv'))
   end
 

@@ -7,7 +7,7 @@
 //------------------------------------------------------------------------------
 
 //EstacaoCodigo;NivelConsistencia;Data;TipoMedicaoChuvas;Maxima;Total;DiaMaxima;NumDiasDeChuva;MaximaStatus;TotalStatus;NumDiasDeChuvaStatus;TotalAnual;TotalAnualStatus;Chuva01;Chuva02;Chuva03;Chuva04;Chuva05;Chuva06;Chuva07;Chuva08;Chuva09;Chuva10;Chuva11;Chuva12;Chuva13;Chuva14;Chuva15;Chuva16;Chuva17;Chuva18;Chuva19;Chuva20;Chuva21;Chuva22;Chuva23;Chuva24;Chuva25;Chuva26;Chuva27;Chuva28;Chuva29;Chuva30;Chuva31;Chuva01Status;Chuva02Status;Chuva03Status;Chuva04Status;Chuva05Status;Chuva06Status;Chuva07Status;Chuva08Status;Chuva09Status;Chuva10Status;Chuva11Status;Chuva12Status;Chuva13Status;Chuva14Status;Chuva15Status;Chuva16Status;Chuva17Status;Chuva18Status;Chuva19Status;Chuva20Status;Chuva21Status;Chuva22Status;Chuva23Status;Chuva24Status;Chuva25Status;Chuva26Status;Chuva27Status;Chuva28Status;Chuva29Status;Chuva30Status;Chuva31Status;
-02553005;1;01/01/2009;1;47,9;161,3;14;7;1;1;1;0;;0;0;12,4;0;0;0;0;0;0;0;0;0;41,1;47,9;33,9;0;0;2,4;14,4;0;0;0;0;0;0;0;0;0;9,2;0;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+02553005;1;01/01/2009;1;47,9;161,3;14;;1;1;1;0;;0;0;12,4;0;0;0;0;0;0;0;0;0;41,1;47,9;33,9;0;0;2,4;14,4;0;0;0;0;0;0;0;0;0;9,2;0;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 02553005;1;01/02/2009;1;83,4;243,5;7;10;1;1;1;0;;0;0;6,6;12,4;0;0;83,4;0;0;4,2;12,4;24,4;0;0;0;0;0;0;0;43,4;9,9;9,7;0;0;37,1;0;0;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 02553005;1;01/03/2009;1;8,9;20,8;24;5;1;1;1;0;;2,4;0;4,2;0;0;0;0;0;2,1;0;0;0;0;0;0;0;0;0;0;0;0;3,2;0;8,9;0;0;0;0;0;0;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 02553005;1;01/04/2009;1;33,4;113,4;22;5;1;1;1;0;;0;0;0;0;23,4;26,8;0;0;13,4;0;0;0;0;0;0;0;0;0;0;0;0;33,4;16,4;0;0;0;0;0;0;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
