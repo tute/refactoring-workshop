@@ -1,6 +1,6 @@
 # Taller de Refactorización
 
-Requerimientos: Ruby >= 2, git, bundler.
+Requerimientos: Ruby >= 2.7, git, bundler.
 
 Cada carpeta lleva por nombre el patrón de refactoring a practicar, y los
 siguientes archivos:
@@ -9,7 +9,7 @@ siguientes archivos:
 * `setup.rb` código de inicialización necesario para `app.rb` (sería el
   "framework", o el resto de la aplicación). No necesitamos conocerlo o editarlo,
   a no ser que sea por curiosidad.
-* `tests.rb` el nombre lo explica. Necesarios para la vida, especialmente si
+* `test_app.rb` el nombre lo explica. Necesarios para la vida, especialmente si
     pensamos refactorizar.
 
 Ejecutar `bundle` para asegurarse de tener las rubygems necesarias para correr
@@ -42,3 +42,13 @@ Nota de implementación: contiene dos archivos adicionales necesarios para los
 tests: `fixtures/input.csv` y `fixtures/output.csv`, y no contiene `setup.rb`.
 
 ## 4. Service Object
+
+
+# Slides
+
+* [Slides (English)](https://github.com/tute/refactoring-workshop-slides-sep-2015/)
+* [Slides (Español)](https://www.tutecosta.com/refactoring-workshop-slides-sep-2015/#/) [repo](https://github.com/tute/refactoring-workshop-slides-sep-2015/tree/es)
+
+# In English
+
+[English version of this doc available](https://github.com/tute/refactoring-workshop/blob/master/README.md).

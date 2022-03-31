@@ -47,7 +47,7 @@ class StatusReportJob
     if user.last_subscription && user.last_subscription.respond_to?(:trial_days)
       user.last_subscription.trial_days
     else
-      '-'
+      '0'
     end
   end
 end

@@ -1,13 +1,13 @@
 # Refactoring Workshop
 
-Requirements: Ruby >= 2.0, git, `minitest` gem.
+Requirements: Ruby >= 2.7, git, `minitest` gem.
 
 Each folder is named after the refactoring pattern they tackle, and contains:
 
 * `app.rb` code we'll refactor.
 * `setup.rb` necessary code for `app.rb` to run (mimicks a SUPER BASIC Rails)
   We don't need to see/edit it unless just curious. :-)
-* `tests.rb` self explanatory. Necessary for daily life, specially for
+* `test_app.rb` self explanatory. Necessary for daily life, specially for
   refactoring.
 
 Run `bundle` to make sure you have the gems needed for running tests (`rake`
@@ -44,9 +44,9 @@ Implementation note: folder contains two fixture files needed for tests,
 
 # Slides
 
-* [RubyConf Argentina Slides](http://es.slideshare.net/thoughtbot/refactoring-workshop-rubyconf-argentina-2014)
-* [RailsConf Slides](http://www.slideshare.net/tutec/simplifying-code-monster-to-elegant-in-n-5-steps)
+* [Slides (English)](https://github.com/tute/refactoring-workshop-slides-sep-2015/)
+* [Slides (Español)](https://www.tutecosta.com/refactoring-workshop-slides-sep-2015/#/) [repo](https://github.com/tute/refactoring-workshop-slides-sep-2015/tree/es)
 
 # In Spanish
 
-[Spanish version of this doc available](https://github.com/tute/refactoring-workshop/blob/master/README.md).
+[Spanish version of this doc available](https://github.com/tute/refactoring-workshop/blob/master/README.es.md).

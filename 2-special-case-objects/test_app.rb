@@ -6,7 +6,7 @@ class TestApp < Minitest::Test
   def test_status_report_job
     response = {
       "Bob" => { name: "Monthly Subscription", status: "active", trial_days: 14},
-      "Patricio" => { name: "none", status: "-", trial_days: "-"}
+      "Patricio" => { name: "none", status: "-", trial_days: "0"}
     }
     assert_equal response, StatusReportJob.new.perform
   end
